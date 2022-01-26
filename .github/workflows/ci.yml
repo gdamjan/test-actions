@@ -1,0 +1,27 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+    - main
+    - staging
+  workflow_dispatch:
+
+env:
+  staging:
+    A: 1
+    B: 2
+  main:
+    A: 3
+    B: 4
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - run: echo $GITHUB_REF_NAME
+      
+      - run: env 
